@@ -34,5 +34,17 @@ describe('HeroesComponent', () => {
       // Assert
       expect(heroesLength).toBe(2);
     });
+
+    it('should call deleteHero with correct hero', () => {
+      // Arrange
+      mockHeroService.deleteHero.and.returnValue(of(true));
+      component.heroes = HEROES;
+
+      // Act
+      component.delete(HEROES[2]);
+
+      // Assert
+      expect(mockHeroService.deleteHero).toHaveBeenCalledWith(HEROES[2]);
+    });
   });
 });
